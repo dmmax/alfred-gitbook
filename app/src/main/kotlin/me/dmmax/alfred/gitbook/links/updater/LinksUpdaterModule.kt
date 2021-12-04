@@ -7,6 +7,6 @@ import org.koin.dsl.module
 val linksUpdaterModule = module {
     single { LinksUpdater(get(), get(), get()) }
     single { LinkService() }
-    single { GitSummaryReader() }
+    single { GitSummaryReader() as SummaryReader}
     single { SummaryParser() }
 }

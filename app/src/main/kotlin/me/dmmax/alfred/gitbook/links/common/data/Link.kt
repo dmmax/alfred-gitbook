@@ -18,6 +18,10 @@ class LinkEntity(id: EntityID<UUID>) : UUIDEntity(id) {
     var url by Links.url
 
     override fun toString(): String = "Link($name, $url)"
+
+    fun toLink(): Link {
+        return Link(name, url)
+    }
 }
 
 object Links : UUIDTable() {
