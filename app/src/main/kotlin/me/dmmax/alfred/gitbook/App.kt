@@ -1,16 +1,16 @@
 package me.dmmax.alfred.gitbook
 
-import me.dmmax.alfred.gitbook.common.database.DatabaseInitialization
-import me.dmmax.alfred.gitbook.links.linkModule
-import me.dmmax.alfred.gitbook.links.service.LinkUpdateService
+import me.dmmax.alfred.gitbook.database.DatabaseInitialization
+import me.dmmax.alfred.gitbook.links.updater.linksUpdaterModule
+import me.dmmax.alfred.gitbook.links.updater.LinksUpdater
 import org.koin.core.context.startKoin
 
 fun main() {
     initDb()
     val app = startKoin {
-        modules(linkModule)
+        modules(linksUpdaterModule)
     }
-    app.koin.get<LinkUpdateService>().updateLinks()
+    app.koin.get<LinksUpdater>().updateLinks()
 }
 
 fun initDb() {

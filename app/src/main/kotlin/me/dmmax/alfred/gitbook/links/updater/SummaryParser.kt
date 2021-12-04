@@ -1,4 +1,4 @@
-package me.dmmax.alfred.gitbook.links.parser
+package me.dmmax.alfred.gitbook.links.updater
 
 import me.dmmax.alfred.gitbook.links.data.Link
 

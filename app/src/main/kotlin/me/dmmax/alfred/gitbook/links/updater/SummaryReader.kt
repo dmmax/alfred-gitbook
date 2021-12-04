@@ -1,4 +1,4 @@
-package me.dmmax.alfred.gitbook.links.reader
+package me.dmmax.alfred.gitbook.links.updater
 
 interface SummaryReader {
 

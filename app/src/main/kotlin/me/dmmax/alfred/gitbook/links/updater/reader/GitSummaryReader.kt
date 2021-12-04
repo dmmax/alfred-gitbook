@@ -1,6 +1,6 @@
-package me.dmmax.alfred.gitbook.links.reader.git
+package me.dmmax.alfred.gitbook.links.updater.reader
 
-import me.dmmax.alfred.gitbook.links.reader.SummaryReader
+import me.dmmax.alfred.gitbook.links.updater.SummaryReader
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.internal.storage.dfs.DfsRepositoryDescription
 import org.eclipse.jgit.internal.storage.dfs.InMemoryRepository
