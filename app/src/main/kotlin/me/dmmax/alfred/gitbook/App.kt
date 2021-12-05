@@ -3,8 +3,8 @@ package me.dmmax.alfred.gitbook
 import me.dmmax.alfred.gitbook.database.DatabaseInitialization
 import me.dmmax.alfred.gitbook.links.finder.LinksFinder
 import me.dmmax.alfred.gitbook.links.finder.linksFinderModule
-import me.dmmax.alfred.gitbook.links.updater.linksUpdaterModule
 import me.dmmax.alfred.gitbook.links.updater.LinksUpdater
+import me.dmmax.alfred.gitbook.links.updater.linksUpdaterModule
 import org.koin.core.context.startKoin
 
 fun main(args: Array<String>) {
@@ -33,6 +33,6 @@ private fun findLinks(name: String) {
     val app = startKoin {
         modules(linksFinderModule)
     }
-    val findNameAndUrlByName = app.koin.get<LinksFinder>().findNameAndUrlByName(name)
-    println(findNameAndUrlByName)
+    val workflowResult = app.koin.get<LinksFinder>().findNameAndUrlByName(name)
+    workflowResult.sendFeedback()
 }

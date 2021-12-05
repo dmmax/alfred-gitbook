@@ -34,8 +34,6 @@ class LinkService {
     fun findLinks(name: String): List<Link> {
         val findByName = "%$name%"
         return transaction {
-            // print sql to std-out
-            addLogger(StdOutSqlLogger)
             LinkEntity.find {
                 Links.name match findByName
             }.map { it.toLink() }
