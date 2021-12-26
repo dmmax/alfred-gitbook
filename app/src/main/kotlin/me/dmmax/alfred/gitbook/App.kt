@@ -5,11 +5,16 @@ import me.dmmax.alfred.gitbook.links.LinksSingletons
 
 fun main(args: Array<String>) {
     initDb()
-    val command = args[0]
-    if (command == "update") {
-        updateLinks()
-    } else if (command == "find") {
-        findLinks(args[1])
+    when (val command = args[0]) {
+        "update" -> {
+            updateLinks()
+        }
+        "find" -> {
+            findLinks(args[1])
+        }
+        else -> {
+            throw UnsupportedOperationException("Command '$command' doesn't support for alfred-gitbook app")
+        }
     }
 }
 
