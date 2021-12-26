@@ -20,13 +20,8 @@ dependencies {
 
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-    // This dependency is used by the application.
-    implementation("com.google.guava:guava:30.1.1-jre")
+    // Git
     implementation("org.eclipse.jgit:org.eclipse.jgit:5.13.0.202109080827-r")
-
-    // Dependency injection
-    implementation("io.insert-koin:koin-core:$koinVersion")
 
     // Database
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
@@ -35,8 +30,6 @@ dependencies {
     implementation("org.xerial:sqlite-jdbc:$sqliteJdbcVersion")
     // Json
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationJsonVersion")
-    // Testing
-    testImplementation("io.insert-koin:koin-test:$koinVersion")
 }
 
 application {

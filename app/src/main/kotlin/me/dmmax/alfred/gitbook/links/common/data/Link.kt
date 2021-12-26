@@ -25,6 +25,6 @@ class LinkEntity(id: EntityID<UUID>) : UUIDEntity(id) {
 }
 
 object Links : UUIDTable() {
-    val name = varchar("name", 255)
-    val url = varchar("url", 255)
+    val name = varchar("name", 255).index()
+    val url = varchar("url", 255).index()
 }

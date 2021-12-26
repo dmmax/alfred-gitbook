@@ -1,11 +1,7 @@
 package me.dmmax.alfred.gitbook
 
 import me.dmmax.alfred.gitbook.database.DatabaseInitialization
-import me.dmmax.alfred.gitbook.links.finder.LinksFinder
-import me.dmmax.alfred.gitbook.links.finder.linksFinderModule
-import me.dmmax.alfred.gitbook.links.updater.LinksUpdater
-import me.dmmax.alfred.gitbook.links.updater.linksUpdaterModule
-import org.koin.core.context.startKoin
+import me.dmmax.alfred.gitbook.links.LinksSingletons
 
 fun main(args: Array<String>) {
     initDb()
@@ -23,16 +19,10 @@ private fun initDb() {
 }
 
 private fun updateLinks() {
-    val app = startKoin {
-        modules(linksUpdaterModule)
-    }
-    app.koin.get<LinksUpdater>().updateLinks()
+    LinksSingletons.linksUpdater.updateLinks()
 }
 
 private fun findLinks(name: String) {
-    val app = startKoin {
-        modules(linksFinderModule)
-    }
-    val workflowResult = app.koin.get<LinksFinder>().findNameAndUrlByName(name)
+    val workflowResult = LinksSingletons.linksFinder.findNameAndUrlByName(name)
     workflowResult.sendFeedback()
 }
