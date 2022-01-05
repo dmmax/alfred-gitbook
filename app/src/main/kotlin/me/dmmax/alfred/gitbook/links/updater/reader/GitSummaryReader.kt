@@ -17,8 +17,8 @@ private const val FILE_TO_READ = "SUMMARY.md"
 
 class GitSummaryReader : SummaryReader {
 
-    private val gitRepository = EnvVars.GIT_REPOSITORY.getEnvValue()
-    private val gitBranch = EnvVars.GIT_BRANCH.getEnvValue()
+    private val gitRepository = EnvVars.GIT_BOOK_REPOSITORY.getEnvValue()
+    private val gitBranch = EnvVars.GIT_BOOK_BRANCH.getEnvValue()
 
     override fun readContent(): String {
         val repository = fetchRepository()

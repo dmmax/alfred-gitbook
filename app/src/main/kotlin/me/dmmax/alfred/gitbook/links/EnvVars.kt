@@ -1,8 +1,9 @@
 package me.dmmax.alfred.gitbook.links
 
 enum class EnvVars(private val envName: String) {
-    GIT_REPOSITORY("gb_repository"),
-    GIT_BRANCH("gb_branch");
+    GIT_BOOK_REPOSITORY("git_book_repository"),
+    GIT_BOOK_BRANCH("git_book_branch"),
+    ALFRED_WORKFLOW_DATA("alfred_workflow_data");
 
     fun getEnvValue(): String {
         val value = System.getenv()[envName]
