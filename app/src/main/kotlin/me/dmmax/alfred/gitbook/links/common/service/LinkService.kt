@@ -4,6 +4,7 @@ import me.dmmax.alfred.gitbook.links.data.Link
 import me.dmmax.alfred.gitbook.links.data.LinkEntity
 import me.dmmax.alfred.gitbook.links.data.Links
 import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.addLogger
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -36,7 +37,9 @@ class LinkService {
         return transaction {
             LinkEntity.find {
                 Links.name match findByName
-            }.map { it.toLink() }
+            }
+                .orderBy(Pair(Links.name, SortOrder.ASC))
+                .map { it.toLink() }
         }
     }
 }
