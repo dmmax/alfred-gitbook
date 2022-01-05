@@ -1,5 +1,6 @@
 package me.dmmax.alfred.gitbook.links.updater.reader
 
+import me.dmmax.alfred.gitbook.links.EnvVars
 import me.dmmax.alfred.gitbook.links.updater.SummaryReader
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.internal.storage.dfs.DfsRepositoryDescription
@@ -12,11 +13,12 @@ import org.eclipse.jgit.treewalk.TreeWalk
 import org.eclipse.jgit.treewalk.filter.PathFilter
 import java.io.ByteArrayOutputStream
 
-private const val REMOTE_URL = "https://github.com/dmmax/Knowledge.git"
-private const val BRANCH = "main"
 private const val FILE_TO_READ = "SUMMARY.md"
 
 class GitSummaryReader : SummaryReader {
+
+    private val gitRepository = EnvVars.GIT_REPOSITORY.getEnvValue()
+    private val gitBranch = EnvVars.GIT_BRANCH.getEnvValue()
 
     override fun readContent(): String {
         val repository = fetchRepository()
@@ -29,14 +31,14 @@ class GitSummaryReader : SummaryReader {
         val repo = InMemoryRepository(repoDesc)
         val git = Git(repo)
         git.fetch()
-            .setRemote(REMOTE_URL)
+            .setRemote(gitRepository)
             .setRefSpecs(RefSpec("+refs/heads/*:refs/heads/*"))
             .call()
         return repo
     }
 
     private fun findLastCommit(repository: Repository): RevCommit {
-        val lastCommitId = repository.resolve("refs/heads/$BRANCH")
+        val lastCommitId = repository.resolve("refs/heads/$gitBranch")
         val revWalk = RevWalk(repository)
         return revWalk.parseCommit(lastCommitId)
     }
@@ -48,7 +50,7 @@ class GitSummaryReader : SummaryReader {
         treeWalk.isRecursive = true
         treeWalk.filter = PathFilter.create(FILE_TO_READ)
         if (!treeWalk.next()) {
-            throw RuntimeException("There is no $FILE_TO_READ in the repository $REMOTE_URL")
+            throw RuntimeException("There is no $FILE_TO_READ in the repository $gitRepository and branch $gitBranch")
         }
         val objectId = treeWalk.getObjectId(0)
         val loader = repository.open(objectId)
