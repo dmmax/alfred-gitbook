@@ -2,6 +2,7 @@ package me.dmmax.alfred.gitbook.database
 
 import me.dmmax.alfred.gitbook.links.EnvVars
 import org.jetbrains.exposed.sql.Database
+import java.nio.file.Files
 import java.nio.file.Paths
 
 const val DB_RELATIVE_PATH = "db/data.db"
@@ -16,6 +17,11 @@ class DatabaseInitialization {
     }
 
     private fun initConnection() {
-        Database.connect(dbUrlPath.toAbsolutePath().toString(), JDBC_DRIVER)
+        val dbFolder = dbUrlPath.parent
+        if (Files.notExists(dbFolder)) {
+            println("Creating folder: $dbFolder")
+            dbFolder.toFile().mkdirs()
+        }
+        Database.connect("jdbc:sqlite:$dbUrlPath", JDBC_DRIVER)
     }
 }
