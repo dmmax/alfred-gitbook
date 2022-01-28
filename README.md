@@ -1,9 +1,17 @@
 # Alfred Gitbook
 
+The worklow allows you to find articles in documentation/wiki/Personal projects which were using [Gitbook](https://www.gitbook.com/). The current implementation finds all pages are under [SUMMARY.md](https://docs.gitbook.com/integrations/git-sync/content-configuration). 
+
+Inspired by [alfred-my-mind](https://github.com/nikitavoloboev/alfred-my-mind), but wanted to create a tool for everyone, just with configuring site url, repository and branch name.
+
 ## Requirements
 
 * [Alfred](https://www.alfredapp.com/) – the app helps to run scripts using keyboard shortcuts or keywords
 * JDK 8
+* You need to prepare the next things
+  * a Site URL which was build by Gitbook
+  * a GIT repository URL which is connected with your site
+  * a GIT repository branch
 
 ## Installation
 
