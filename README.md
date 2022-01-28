@@ -16,7 +16,6 @@ Inspired by [alfred-my-mind](https://github.com/nikitavoloboev/alfred-my-mind), 
 ## Installation
 
 * Download [alfred workflow](https://github.com/dmmax/alfred-gitbook/releases/latest/download/alfred-gitbook.alfredworkflow)
-* Download the latest `alfred-gitbook.alfredworkflow`
 * Double-click on the downloaded file, and follow the installation steps from the Alfred app
 
 ## Using
